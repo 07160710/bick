@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>在线考试系统</title>
+<!-- BOOTSTRAP STYLES-->
+<link href="__STUDENT__/assets/css/bootstrap.css" rel="stylesheet" />
+<!-- FONTAWESOME STYLES-->
+<link href="__STUDENT__/assets/css/font-awesome.css" rel="stylesheet" />
+<!-- MORRIS CHART STYLES-->
+<link href="__STUDENT__/assets/js/morris/morris-0.4.3.min.css"
+	rel="stylesheet" />
+<!-- CUSTOM STYLES-->
+<link href="__STUDENT__/assets/css/custom.css" rel="stylesheet" />
+<!-- GOOGLE FONTS-->
+<script type="text/javascript" src="__STUDENT__/js/jquery.min.js"></script>
+<script type="text/javascript" src="js/laydate.js"></script>
+<script language="javascript">
+	function ajaxsubmit(itemid) {
+		var selectStatus = document.getElementById(itemid).checked;
+		var data = {
+			"itemid" : itemid,
+			"selectStatus" : selectStatus
+		};
+		//alert(itemid);
+		$.ajax({
+					url : "/bick/public/index.php/test/index/insert.html?'+Math.random();", //后台处理程序  
+					type : 'post', //数据传送方式  
+					dataType : 'json', //接受数据格式  
+					data : data, //要传送的数据  
+					success : update_page
+				//回传函数(这里是函数名字)  
+				});
+	}
+	function update_page(json) { //回传函数实体，参数为XMLhttpRequest.responseText 
+		var str = "<i class='fa fa-check'></i>";
+		var itemid = json.itemid;
+		document.getElementById("sign" + itemid).innerHTML = str;
+	}
+</script>
+</head>
+<body>
+	<div id="wrapper">
+		<nav class="navbar navbar-default navbar-cls-top " role="navigation"
+			style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">在线考试系统</a>
+			</div>
+			<div
+				style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
+				学号： {:session('tester')['studentId']} 姓名: {:session('tester')['userName']} &nbsp;&nbsp;<a
+					href="{:url('login/loginout')}"
+					class="btn btn-danger square-btn-adjust">交&nbsp;卷</a>
+			</div>
+		</nav>
+
+		<!-- /. NAV SIDE  -->
+		<div id="page-inner">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>2016-2017-2php期中考试</h2>
+					<h5>（考试时间：80分钟，适用于软件专业）</h5>
+				</div>
+			</div>
+			<!-- --------------------------------------------------------------------------- -->
+
+			<!--试题内容行-->
+			<hr />
+			<div class="row">
+				<div class="col-md-6 col-sm-4">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<table border=0 cellpadding='10' cellspacing='10'>
+								<tr>
+									<td width='30'><div id='sign1'>
+											<i class="fa fa-tag"></i>
+										</div></td>
+									<td width='20'>1.</td>
+									<td>题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述
+										题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述</td>
+								</tr>
+							</table>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<form action="#">
+									<div class="checkbox">
+										<label> <input type="checkbox" name='1' id='1'
+											value='k' onblur="ajaxsubmit('1')" />Checkbox Example
+											OneExample OneExample OneExample OneExample One
+										</label>
+									</div>
+									<div class="checkbox">
+										<label> <input type="checkbox" name='item2' value="5" />Checkbox
+											Example TwoExample TwoExample TwoExample TwoExample Two
+										</label>
+									</div>
+									<div class="checkbox">
+										<label> <input type="checkbox" name='item3' value="7" />Checkbox
+											Example ThreeExample TwoExample TwoExample TwoExample Two
+										</label>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-4">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<table border=0 cellpadding='10' cellspacing='10'>
+								<tr>
+									<td width='30'><i class="fa fa-tag"></i></td>
+									<td width='20'>2.</td>
+									<td>题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述
+										题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述</td>
+								</tr>
+							</table>
+						</div>
+						<div class="panel-body">
+							<div class="radio">
+								<label> <input type="radio" name="optionsRadios"
+									id="optionsRadios1" value="option1" checked />Radio Example
+									One
+								</label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="optionsRadios"
+									id="optionsRadios2" value="option2" />Radio Example Two
+								</label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="optionsRadios"
+									id="optionsRadios3" value="option3" />Radio Example Three
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--试题内容行-->
+			<hr />
+			<div class="row">
+				<div class="col-md-6 col-sm-4">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<table border=0 cellpadding='10' cellspacing='10'>
+								<tr>
+									<td width='30'><i class="fa fa-tag"></i></td>
+									<td width='20'>11.</td>
+									<td>题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述
+										题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述</td>
+								</tr>
+							</table>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<div class="checkbox">
+									<label> <input type="checkbox" value="" />Checkbox
+										Example One
+									</label>
+								</div>
+								<div class="checkbox">
+									<label> <input type="checkbox" value="" />Checkbox
+										Example Two
+									</label>
+								</div>
+								<div class="checkbox">
+									<label> <input type="checkbox" value="" />Checkbox
+										Example Three
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-4">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<table border=0 cellpadding='10' cellspacing='10'>
+								<tr>
+									<td width='30'><i class="fa fa-tag"></i></td>
+									<td width='20'>444.</td>
+									<td>题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述
+										题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述
+										题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述 题目内容描述题目内容描述题目内容描述 题目内容描述题目内容描述</td>
+								</tr>
+							</table>
+						</div>
+						<div class="panel-body">
+							<div class="radio">
+								<label> <input type="radio" name="optionsRadios"
+									id="optionsRadios1" value="option1" checked />Radio Example
+									OneRadio Example OneRadio Example OneRadio Example OneRadio
+									Example OneRadio Example OneRadio Example OneRadio Example
+									OneRadio Example One
+								</label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="optionsRadios"
+									id="optionsRadios2" value="option2" />Radio Example Two
+								</label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="optionsRadios"
+									id="optionsRadios3" value="option3" />Radio Example Three
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--试题内容行-->
+			<hr />
+			<div class="row">
+				<div class="col-md-6 col-sm-4">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<table border=0 cellpadding='10' cellspacing='10'>
+								<tr>
+									<td width='30'><i class="fa fa-tag"></i></td>
+									<td width='20'>11.</td>
+									<td>题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述
+										题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述</td>
+								</tr>
+							</table>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<div class="checkbox">
+									<label> <input type="checkbox" value="" />Checkbox
+										Example One
+									</label>
+								</div>
+								<div class="checkbox">
+									<label> <input type="checkbox" value="" />Checkbox
+										Example Two
+									</label>
+								</div>
+								<div class="checkbox">
+									<label> <input type="checkbox" value="" />Checkbox
+										Example Three
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-4">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<table border=0 cellpadding='10' cellspacing='10'>
+								<tr>
+									<td width='30'><i class="fa fa-tag"></i></td>
+									<td width='20'>444.</td>
+									<td>题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述
+										题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述
+										题目内容描述题目内容描述题目内容描述题目内容描述题目内容描述 题目内容描述题目内容描述题目内容描述 题目内容描述题目内容描述</td>
+								</tr>
+							</table>
+						</div>
+						<div class="panel-body">
+							<div class="radio">
+								<label> <input type="radio" name="optionsRadios"
+									id="optionsRadios1" value="option1" checked />Radio Example
+									OneRadio Example OneRadio Example OneRadio Example OneRadio
+									Example OneRadio Example OneRadio Example OneRadio Example
+									OneRadio Example One
+								</label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="optionsRadios"
+									id="optionsRadios2" value="option2" />Radio Example Two
+								</label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="optionsRadios"
+									id="optionsRadios3" value="option3" />Radio Example Three
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--试题内容行-->
+			<!-- -------------------------------------------------------------------------- -->
+		</div>
+	</div>
+</body>
+</html>
